@@ -1,0 +1,98 @@
+<html>
+<head><title>Blind Watch Maker</title></head>
+<script>
+   
+function makeId(i,j){
+	return 'c'+i+'_'+j;
+}
+function Creature() {
+    this.genes = new Array(30);
+    this.chosen=false;
+    for (i=0;i<30;i++) {
+		this.genes[i]=new Array(2);
+		this.genes[i][0]=Math.random()*30-15;
+		this.genes[i][1]=Math.random()*30-15;
+	}
+    this.show=function(id) {
+      c = document.getElementById(id);
+      ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.beginPath();
+      if (this.chosen) ctx.fillStyle = 'pink';
+	  else ctx.fillStyle='white';
+	  ctx.fillRect(0, 0, c.width, c.height);
+      ctx.moveTo(50,50);
+      var x=50,y=50;
+      for (var i=0;i<this.genes.length;i++) {
+        x+=this.genes[i][0];
+        y+=this.genes[i][1];
+        ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+      ctx.moveTo(50,50);
+      var x=200,y=50;
+      for (var i=0;i<this.genes.length;i++) {
+        x-=this.genes[i][0];
+        y+=this.genes[i][1];
+        ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    this.setChosen=function(status) {
+		this.chosen=status;
+	}
+    this.mutate=function(parent) {
+      for (i=0;i<30;i++) {
+		this.genes[i]=new Array(2);
+		this.genes[i][0]=parent.genes[i][0]+Math.random()*10-5;
+		this.genes[i][1]=parent.genes[i][1]+Math.random()*10-5;
+	  }  
+    }
+}
+var creatures;
+function choose(ii,jj) {
+    p=creatures[ii][jj];
+	creatures[ii][jj].setChosen(true);  
+    for (var i=0;i<4;i++)
+      for (var j=0;j<4;j++)
+        if (i!=ii || j!==jj) { 
+		  creatures[i][j].setChosen(false);
+          creatures[i][j].mutate(creatures[ii][jj]);
+        }
+    for (var i=0;i<4;i++)
+      for (var j=0;j<4;j++)
+		creatures[i][j].show(makeId(i,j));
+}
+function update() {
+    for (var i=0;i<4;i++)
+      for (var j=0;j<4;j++) 
+        creatures[i][j].show(makeId(i,j));
+}
+function addCanvases() {
+	creatures=[];
+    for (var i=0;i<4;i++) {
+	  creatures[i]=[];
+      for (var j=0;j<4;j++) {
+		creatures[i][j]=new Creature();
+        document.write("<canvas id='"+makeId(i,j)+"' onclick='choose("+i+','+j+")'>");
+        document.write("</canvas>");
+      }
+      document.write("<br/>");
+    }
+}
+</script>
+<style>
+	canvas {
+		border-width:1px;
+		border-color:black;
+		border-style:solid;
+		width:24.5%;
+		height:24.5%;
+	}
+</style>
+<body onload="update();">
+<script>
+    addCanvases();
+</script>
+</body>
+</html>
