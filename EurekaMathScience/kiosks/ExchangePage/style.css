@@ -1,0 +1,8 @@
+#label {text-align: right; }
+table {width:100%}
+td { font-size: 250%; }
+select { font: inherit; }
+input { font: inherit; }
+h1 {text-align:center; font-size:300%;}
+h6 {text-align:center;}
+#map {width:200px }

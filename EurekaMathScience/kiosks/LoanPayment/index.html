@@ -1,0 +1,32 @@
+<html>
+<head><title>Loan Payment Calculation</title></head>
+<script src='code.js'></script>
+ <link rel="stylesheet" href="style.css">
+<body onLoad="update()">
+<center><h1>What does borrowing money cost?</h1></center>
+<table>
+  <tr><td colspan='2'>
+      <table>
+          <tr>
+              <td><image src='bike.png'  onclick="amount(250.00);"/></td>
+              <td><image src='car.png'  onclick="amount(30000.00);"/></td>
+              <td><image src='house.png' onclick="amount(250000.00);"/></td>
+              <td><image src='business.png'  onclick="amount(1000000.00);"/></td></tr>
+      </table>
+  </td></tr>
+  <tr><td class='label'>Amount</td><td>$<input size=8 id='PV' value='250.00' onChange="update()"/></td></tr>
+  <tr><td class='label'>Rate</td><td><input type=range min=1.0 max=24.9 step=0.1 value=5.0 id='r' onChange="update()" /><input disabled=on type=text id='rDisplay' value='5.0' size='4'/>%</td></tr>
+  <tr><td class='label'># of years</td><td>
+  <input type=range min=1 max=30 step=1 value=5 id='n' onChange="update()" /><input disabled=on type=text id='nDisplay' value='5' size=2/>
+  </td></tr>
+  <tr><td class='label'>Payment</td><td>$<input size=8 id='P' disabled=on/></td></tr>
+  <tr><td class='label'>Total Interest</td><td>$<input size=8 id='TI' disabled=on/></td></tr>
+  <tr><td class='label'>Monthly Income</td><td>$<input type=range min=10 max=50000 step=1000 value=10.0 id='i' onChange="update()" /><input disabled=on type=text id='iDisplay' value='10.0' size='5'/></td></tr>
+  <tr><td class='label'>Payment Percent of Income</td><td><input size=8 id='PI' disabled=on/>%</td></tr>
+  <tr><td class='label'>Remaining Income</td><td>$<input size=8 id='RI' disabled=on/></td></tr>
+</table>
+<p>Some things to explore: What interest rates and # of years make the cost of borrowing more than the orignal value?  Can you get the same payment with different # of years and interest rates?  Do you pay more for lower payments for the same amount?
+</p>
+<center><h6>Sponsored by ABC</h6></center>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Story Book Demonstration</title>
+    <script src='jquery-3.2.1.min.js'></script>
+    <script src='turn.js'></script>
+</head>
+<style>
+#flipbook{
+	width: 80%;
+	height: 80%;
+}
+
+#flipbook .turn-page{
+	background-color:white;
+}
+
+#flipbook .hard{
+	background-color:tan;
+}
+
+body {
+    font-size:40pt;
+}
+
+img {
+    width:75%;
+}
+
+</style>
+<body>
+    <p>Text Above</p>
+    <hr/>    
+
+<div id="flipbook">
+	<div class="hard">
+	  <center>Why nuts are shaped the way they are</center>
+	  <center><img width=90% src='image.jpg'/></center>
+	  <audio controls autoplay width='300px'>
+      <source src="example.mp3" type="audio/mpeg" autoplay="autoplay">
+      </audio>
+	</div>
+	<div class="hard"></div>
+	<div> 
+	  They started out most round but a few had spikes
+	  <center><img width=90% src='image2.jpg'/></center>
+	  <audio controls autoplay>
+      <source src="example2.mp3" type="audio/mpeg" autoplay="autoplay">
+      </audio>
+    </div>
+	<div> A nut cracker enjoy crushing the round nuts </div>
+	<div> The spikey nuts survive to produce more spikey nuts </div>
+	<div> They don't worry about nut crackers anymore </div>
+	<div class="hard"></div>
+	<div class="hard"></div>
+</div>
+<script type="text/javascript">
+	$("#flipbook").turn({
+		autoCenter: true
+	});
+</script>
+    <hr/>
+  <p>Text Below</p>
+</body>
+</html>
